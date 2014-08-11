@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Restaurant_Foo.Models.ReservationSlot>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Reservations</h2>
+
+<p>
+    @if(User.IsInRole("Admin")){
+        @Html.ActionLink("Create New", "Create")
+       }
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name) &nbsp;
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Time) &nbsp;
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfGuests) &nbsp;
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailAddress)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumberOfGuests)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailAddress)
+        </td>
+        <td>
+            @Html.ActionLink("Edit Reservation", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @if (User.IsInRole("Admin")){
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            }
+        </td>
+    </tr>
+}
+
+</table>

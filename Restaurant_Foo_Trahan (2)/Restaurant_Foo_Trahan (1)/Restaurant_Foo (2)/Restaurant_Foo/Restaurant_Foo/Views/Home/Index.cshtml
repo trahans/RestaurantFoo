@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Restaurant_Foo.Models.MenuItem>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<form method="get">
+
+    <input type="search" name="searchTerm" />
+    <input type="submit" value="Search" />
+</form>
+
+<h2>Our Menu</h2>
+
+@foreach (var item in Model)
+{
+    <div>
+        <h4>@item.Name</h4>
+        <div><i>@item.Description</i><b>&nbsp;@item.Price</b></div>
+        <hr />
+    </div>
+}
